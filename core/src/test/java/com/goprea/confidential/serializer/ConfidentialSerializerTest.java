@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ConfidentialSerializerTest {
 
     @Test
-    public void testSerializationAndDeserialization() throws JsonProcessingException {
+    void testSerializationAndDeserialization() throws JsonProcessingException {
         // Generate a random secret key for encryption and decryption
         SecretKey secretKey = generateSecretKey();
 
