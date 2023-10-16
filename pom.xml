@@ -18,7 +18,6 @@
 
     <modules>
         <module>core</module>
-        <module>spring-test</module>
         <module>core2</module>
     </modules>
 
