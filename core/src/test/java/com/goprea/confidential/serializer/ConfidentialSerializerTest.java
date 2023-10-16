@@ -3,7 +3,7 @@
 //import com.fasterxml.jackson.core.JsonProcessingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.module.SimpleModule;
-//import com.goprea.confidential.ConfidentialData;
+//import ro.simavi.mf.avr.model.ConfidentialData;
 //import org.junit.jupiter.api.Test;
 //
 //import javax.crypto.KeyGenerator;

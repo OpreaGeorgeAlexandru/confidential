@@ -1,4 +1,4 @@
-package com.goprea.confidential.serializer;
+package ro.simavi.mf.avr.json;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

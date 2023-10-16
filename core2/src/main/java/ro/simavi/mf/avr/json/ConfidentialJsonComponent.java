@@ -6,24 +6,14 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.goprea.confidential.annotations.Confidential;
-import com.goprea.confidential.serializer.CipherConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.jackson.JsonComponent;
+import ro.simavi.mf.avr.annotations.Confidential;
 import ro.simavi.mf.avr.utils.EncryptionDecryptionUtil;
 import ro.simavi.mf.avr.utils.SecretKeyGenerator;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.KeySpec;
-import java.util.Base64;
 
 @JsonComponent
 @Slf4j
@@ -63,12 +53,6 @@ public class ConfidentialJsonComponent {
             }
         }
 
-//        @Override
-//        public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property)
-//                throws JsonMappingException {
-//            return new com.goprea.confidential.serializer.ConfidentialJsonComponent.ConfidentialSerializer();
-//        }
-
         private boolean isFieldConfidential(JsonGenerator gen) throws NoSuchFieldException {
             if(gen == null || gen.getOutputContext() == null || gen.getOutputContext().getCurrentName() == null) return false;
             if(CipherConfig.isInConfidentialList(gen.getOutputContext().getCurrentName())) return true;
@@ -82,25 +66,6 @@ public class ConfidentialJsonComponent {
             return annotationPresent;
         }
 
-        public Class<String> handledType() {
-            return String.class;
-        }
-
-    }
-
-    private static SecretKey generateSecretKey() {
-        try {
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-
-            KeySpec spec = new PBEKeySpec("1234567891123456".toCharArray(), salt, 65536, 256); // AES-256
-            SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            byte[] key = f.generateSecret(spec).getEncoded();
-            return new SecretKeySpec(key, "AES");
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
     }
 
     public static class ConfidentialDeserializer extends JsonDeserializer<String> {
@@ -125,12 +90,6 @@ public class ConfidentialJsonComponent {
                 throw new IOException(ex);
             }
         }
-
-//        @Override
-//        public JsonDeserializer<?> createContextual(DeserializationContext ctxt, BeanProperty property)
-//                throws JsonMappingException {
-//            return new com.goprea.confidential.serializer.ConfidentialJsonComponent.ConfidentialDeserializer();
-//        }
 
         private boolean isFieldConfidential(JsonParser p) throws NoSuchFieldException, IOException {
             if(p == null || p.getCurrentName() == null) return false;

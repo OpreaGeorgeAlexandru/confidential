@@ -48,6 +48,12 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>ro.simavi.mf.avr</groupId>
+            <artifactId>core2</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!--        <dependency>-->
 <!--            <groupId>com.goprea.confidential</groupId>-->
 <!--            <artifactId>core</artifactId>-->

@@ -1,7 +1,7 @@
-package com.goprea.confidential;
+package ro.simavi.mf.avr.model;
 
-import com.goprea.confidential.annotations.Confidential;
 import lombok.Data;
+import ro.simavi.mf.avr.annotations.Confidential;
 
 @Data
 public class ConfidentialData {
