@@ -12,7 +12,7 @@ public class TestController {
 
     @PostMapping("/test")
     public ConfidentialData test(@RequestBody ConfidentialData data){
-        log.info("Received data: " + data);
+        log.info("Received data2: " + data);
         return data;
     }
 }

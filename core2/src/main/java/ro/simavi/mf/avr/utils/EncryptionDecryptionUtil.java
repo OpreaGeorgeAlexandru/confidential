@@ -49,12 +49,12 @@ public class EncryptionDecryptionUtil {
     }
 
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-
-        String data = "This is not easy as you think";
-        String secretKey = SecretKeyGenerator.getSecretKey();
-        String encrypted = encrypt(secretKey, data);
-        System.out.println(encrypted);
-        System.out.println(decrypt(secretKey, encrypted));
-    }
+//    public static void main(String[] args) throws NoSuchAlgorithmException {
+//
+//        String data = "This is not easy as you think";
+//        String secretKey = SecretKeyGenerator.getSecretKey();
+//        String encrypted = encrypt(secretKey, data);
+//        System.out.println(encrypted);
+//        System.out.println(decrypt(secretKey, encrypted));
+//    }
 }
